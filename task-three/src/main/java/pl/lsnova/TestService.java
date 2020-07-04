@@ -27,7 +27,7 @@ public class TestService {
     public int getGraphsCount(List<Integer> vertices) {
 
         if (vertices.size() % 2 != 0) {
-            throw new RuntimeException("Vertices size must be odd");
+            throw new RuntimeException("Vertices size must be even");
         }
 
         int counter = 0;

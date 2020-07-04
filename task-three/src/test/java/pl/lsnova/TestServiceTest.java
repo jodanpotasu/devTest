@@ -44,7 +44,7 @@ class TestServiceTest {
     }
 
     @Test
-    void getGraphsCount_not_odd() {
+    void getGraphsCount_not_even() {
 
         //given
         List<Integer> integers = Arrays.asList(1, 2, 3, 5, 6);
@@ -56,7 +56,7 @@ class TestServiceTest {
                 () -> testService.getGraphsCount(integers)
         );
 
-        assertEquals("Vertices size must be odd", throwable.getMessage());
+        assertEquals("Vertices size must be even", throwable.getMessage());
     }
 
     private static List<Integer> getRandomArray(int size) {
