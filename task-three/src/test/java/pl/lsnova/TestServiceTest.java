@@ -29,6 +29,19 @@ class TestServiceTest {
     }
 
     @Test
+    void getGraphsCount_second() {
+
+        //given
+        List<Integer> integers = Arrays.asList(1, 2, 1, 40, 1, 41, 2, 3, 5, 6, 7, 10, 10, 11, 11, 40);
+
+        //when
+        int result = testService.getGraphsCount(integers);
+
+        //then
+        assertEquals(2, result);
+    }
+
+    @Test
     @Timeout(value = 400, unit = TimeUnit.MILLISECONDS)
     void getGraphsCount_400_000_values() {
 
@@ -37,10 +50,7 @@ class TestServiceTest {
         List<Integer> integers = getRandomArray(size);
 
         //when
-        int result = testService.getGraphsCount(integers);
-
-        //then
-        assertTrue(result > 0);
+        testService.getGraphsCount(integers);
     }
 
     @Test

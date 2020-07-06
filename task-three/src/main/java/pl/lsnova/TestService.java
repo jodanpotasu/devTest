@@ -1,9 +1,6 @@
 package pl.lsnova;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -31,22 +28,24 @@ public class TestService {
         }
 
         int counter = 0;
+
         Set<Integer> graphs = new HashSet<>();
 
         for (int i = 0; i < vertices.size(); i = i + 2) {
             int first = vertices.get(i);
             int second = vertices.get(i + 1);
 
-            if ((first + 1 == second) || (first - 1 == second)) {
-
-                if (!graphs.contains(first) && !graphs.contains(second)) {
-                    counter++;
-
-                }
-                graphs.add(first);
-                graphs.add(second);
-
+            if (!graphs.contains(first) && !graphs.contains(second)) {
+                counter++;
             }
+
+            //connecting graph
+            if (graphs.contains(first) && graphs.contains(second)) {
+                counter--;
+            }
+
+            graphs.add(first);
+            graphs.add(second);
         }
 
         return counter;
