@@ -40,11 +40,32 @@ class TestServiceTest {
     }
 
     @Test
-    @Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
-    void getPairs_400_000_values() {
+    void getPairs_duplicates() {
 
         //given
-        int size = 400_000;
+        int sum = 13;
+        List<Integer> integers = Arrays.asList(1,2,3,4,5,6,10,10,1,2,2,10,11,11);
+
+        //when
+        List<CustomDto> result = testService.getPairs(sum, integers);
+
+        //then
+        assertNotNull(result);
+        assertEquals(9, result.size());
+
+        long twoCounter = result.stream().filter(customDto -> customDto.getFirstValue() == 2).count();
+        assertEquals(6, twoCounter);
+
+        long threeCounter = result.stream().filter(customDto -> customDto.getFirstValue() == 3).count();
+        assertEquals(3, threeCounter);
+    }
+
+    @Test
+    @Timeout(value = 500, unit = TimeUnit.MILLISECONDS)
+    void getPairs_40_000_values() {
+
+        //given
+        int size = 40_000;
         int sum = 13;
         List<Integer> integers = getRandomArray(size);
 
